@@ -70,3 +70,12 @@ public:
 	void run(Digit[2], int);
 };
 
+class DigitDifferenceTest : public SimpleTest<Digit[2], int> {
+public:
+	void run(Digit[2], int);
+};
+
+class DigitDifferenceOverflowTest : public SimpleTest<Digit[2], int> {
+public:
+	void run(Digit[2], int);
+};

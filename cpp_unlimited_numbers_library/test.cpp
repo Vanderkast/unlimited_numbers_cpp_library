@@ -32,3 +32,15 @@ void DigitSumOverflowTest::run(Digit input[2], int validator){
 	Digit toTest = mirror.plus(input[1]);
 	setSuccessAndMessage(toTest.asInt() == validator);
 }
+
+void DigitDifferenceTest::run(Digit input[2], int validator){
+	Digit toTest = input[0];
+	Digit ignored = toTest.minus(input[1]);
+	setSuccessAndMessage(toTest.asInt() == validator);
+}
+
+void DigitDifferenceOverflowTest::run(Digit input[2], int validator){
+	Digit mirror = input[0];
+	Digit toTest = mirror.minus(input[1]);
+	setSuccessAndMessage(toTest.asInt() == validator);
+}

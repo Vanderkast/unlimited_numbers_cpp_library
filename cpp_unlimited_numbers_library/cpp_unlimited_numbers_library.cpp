@@ -15,6 +15,8 @@ void testDigitCreationFromChar(char digit, std::vector<bool> validator);
 void testDigitToChar(Digit digit, char validator);
 void testDigitSum(Digit* input, int validator);
 void testDigitSumOverflow(Digit* input, int validator);
+void testDigitDifference(Digit* input, int validator);
+void testDigitDifferenceOverflow(Digit* input, int validator);
 
 int main() {
 	setUp();
@@ -29,10 +31,13 @@ int main() {
 	arr[0] = seven;
 	arr[1] = two;
 	testDigitSum(arr, 9);
+	testDigitDifference(arr, 5);
 	
 	testDigitSumOverflow(arr, 0);
+	testDigitDifferenceOverflow(arr, 0);
 	arr[1] = Digit(9);
 	testDigitSumOverflow(arr, 1);
+	testDigitDifferenceOverflow(arr, 1);
 
 	delete[] arr;
 }
@@ -75,4 +80,16 @@ void testDigitSumOverflow(Digit* input, int validator){
 	DigitSumOverflowTest test = DigitSumOverflowTest();
 	test.run(input, validator);
 	cout << "Sum overflow from " << input[0].asChar() << " + " << input[1].asChar() << " was " << test.message() << endl;
+}
+
+void testDigitDifference(Digit* input, int validator){
+	DigitDifferenceTest test = DigitDifferenceTest();
+	test.run(input, validator);
+	cout << "Difference " << input[0].asChar() << " - " << input[1].asChar() << " was " << test.message() << endl;
+}
+
+void testDigitDifferenceOverflow(Digit* input, int validator){
+	DigitDifferenceOverflowTest test = DigitDifferenceOverflowTest();
+	test.run(input, validator);
+	cout << "Difference overflow from " << input[0].asChar() << " - " << input[1].asChar() << " was " << test.message() << endl;
 }

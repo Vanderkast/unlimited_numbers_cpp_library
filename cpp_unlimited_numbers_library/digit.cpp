@@ -39,19 +39,26 @@ Digit::Digit(Digit* number) {
 	}
 }
 
-Digit setBinaryAndReturnOverflow(std::vector<bool>& binary, int number) {
-	binary = Digit(number % 10).vector();
+Digit fillBinaryAndReturnOverflow(std::vector<bool>& binary, int number) {
+	fillBinary(binary, number % 10);
 	return Digit(number / 10);
 }
 
 Digit Digit::plus(Digit& number) {
 	int sum = this->asInt() + number.asInt();
-	return setBinaryAndReturnOverflow(this->binary, sum);
+	this->binary.clear();
+	return fillBinaryAndReturnOverflow(this->binary, sum);
+}
+
+void prepareDifferenceResult(int & number) {
+	number = number > 0 ? number : (-1) * number + 10;
 }
 
 Digit Digit::minus(Digit& number) {
 	int difference = this->asInt() - number.asInt();
-	return setBinaryAndReturnOverflow(this->binary, difference);
+	prepareDifferenceResult(difference);
+	this->binary.clear();
+	return fillBinaryAndReturnOverflow(this->binary, difference);
 }
 
 int Digit::asInt() {
