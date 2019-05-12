@@ -15,8 +15,8 @@ public:
 template <typename Input, typename Predictor>
 struct SimpleTest : Test<Input, Predictor> {
 protected:
-	std::string msg;
-	bool scs;
+	std::string msg = "";
+	bool scs = false;
 
 	void setSuccessAndMessage(bool);
 public:

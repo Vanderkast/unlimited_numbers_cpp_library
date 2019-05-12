@@ -3,8 +3,10 @@
 // арифметические операции, операции сравнения.
 
 #include <iostream>
-#include "test.h"
 #include <vector>
+#include "test.h"
+#include "unumber.h"
+#include "number_test.h"
 
 using namespace std;
 
@@ -18,41 +20,31 @@ void testDigitSumOverflow(Digit* input, int validator);
 void testDigitDifference(Digit* input, int validator);
 void testDigitDifferenceOverflow(Digit* input, int validator);
 
+void testNumberCreationFromString(string input, string validator);
+
 int main() {
 	setUp();
 
-	testDigitCreationFromInt(6, { 0,1,1 });
-	testDigitToInt(Digit(9), 9);
-	testDigitCreationFromChar('5',  {1,0,1});
-	testDigitToChar(Digit('7'), '7');
-	Digit seven = Digit(7);
-	Digit two = Digit('2');
-	Digit* arr = new Digit[2];
-	arr[0] = seven;
-	arr[1] = two;
-	testDigitSum(arr, 9);
-	testDigitDifference(arr, 5);
-	
-	testDigitSumOverflow(arr, 0);
-	testDigitDifferenceOverflow(arr, 0);
-	arr[1] = Digit(9);
-	testDigitSumOverflow(arr, 1);
-	testDigitDifferenceOverflow(arr, 1);
-
-	delete[] arr;
+	string number = "259";
+	vector<Digit> validator = { Digit(2),Digit(5) ,Digit(6) };
+	testNumberCreationFromString(number, number);
+	Number a = Number("100");
+	Number b = Number("100");
+	bool result = a.equal(b);
+	cout << (result ? 1 : -1) << endl;
 }
 
 void setUp() {
 	setlocale(LC_ALL, "Russian");
 }
 
-void testDigitCreationFromInt(int digit, std::vector<bool> validator){
+void testDigitCreationFromInt(int digit, std::vector<bool> validator) {
 	DigitCreationFromIntTest test = DigitCreationFromIntTest();
 	test.run(digit, validator);
 	cout << "Creation digit from int " << digit << " was " << test.message() << endl;
 }
 
-void testDigitToInt(Digit digit, int validator){
+void testDigitToInt(Digit digit, int validator) {
 	DigitToIntTest test = DigitToIntTest();
 	test.run(digit, validator);
 	cout << "Converting Digit to int " << validator << " was " << test.message() << endl;
@@ -64,32 +56,38 @@ void testDigitCreationFromChar(char digit, std::vector<bool> validator) {
 	cout << "Creation digit from char " << digit << " was " << test.message() << endl;
 }
 
-void testDigitToChar(Digit digit, char validator){
+void testDigitToChar(Digit digit, char validator) {
 	DigitToCharTest test = DigitToCharTest();
 	test.run(digit, validator);
 	cout << "Converting Digit to char " << validator << " was " << test.message() << endl;
 }
 
-void testDigitSum(Digit* input, int validator){
+void testDigitSum(Digit* input, int validator) {
 	DigitSumTest test = DigitSumTest();
 	test.run(input, validator);
 	cout << "Sum " << input[0].asChar() << " + " << input[1].asChar() << " was " << test.message() << endl;
 }
 
-void testDigitSumOverflow(Digit* input, int validator){
+void testDigitSumOverflow(Digit* input, int validator) {
 	DigitSumOverflowTest test = DigitSumOverflowTest();
 	test.run(input, validator);
 	cout << "Sum overflow from " << input[0].asChar() << " + " << input[1].asChar() << " was " << test.message() << endl;
 }
 
-void testDigitDifference(Digit* input, int validator){
+void testDigitDifference(Digit* input, int validator) {
 	DigitDifferenceTest test = DigitDifferenceTest();
 	test.run(input, validator);
 	cout << "Difference " << input[0].asChar() << " - " << input[1].asChar() << " was " << test.message() << endl;
 }
 
-void testDigitDifferenceOverflow(Digit* input, int validator){
+void testDigitDifferenceOverflow(Digit* input, int validator) {
 	DigitDifferenceOverflowTest test = DigitDifferenceOverflowTest();
 	test.run(input, validator);
 	cout << "Difference overflow from " << input[0].asChar() << " - " << input[1].asChar() << " was " << test.message() << endl;
+}
+
+void testNumberCreationFromString(string input, string validator){
+	NumberCreationFromStringTest test = NumberCreationFromStringTest();
+	test.run(input, validator);
+	cout << "Creation number from string " << input << " was " << test.message() << endl;
 }

@@ -153,14 +153,18 @@
   <ItemGroup>
     <ClCompile Include="cpp_unlimited_numbers_library.cpp" />
     <ClCompile Include="digit.cpp" />
+    <ClCompile Include="number_test.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="unumber.cpp" />
+    <ClCompile Include="unumber_exception.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="digit.h" />
+    <ClInclude Include="number_test.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="unumber.h" />
+    <ClInclude Include="unumber_exception.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="cpp_unlimited_numbers_library.rc" />

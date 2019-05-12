@@ -22,7 +22,7 @@ Digit::Digit(int number) {
 }
 
 int intFromChar(char& number) {
-	return number - '0';
+	return (number - '0') % 10;
 }
 
 Digit::Digit(char charDigit){
